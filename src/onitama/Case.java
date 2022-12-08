@@ -48,6 +48,8 @@ public class Case {
     public void affecterReper(boolean b){
         pionReper = b;
     }
+    
+    
 
     @Override
     public String toString() {

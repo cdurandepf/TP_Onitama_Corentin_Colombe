@@ -22,6 +22,6 @@ public class Onitama {
         jeu.acessPlateau().afficherGrille();
         j1.acessMainCourante()[0].afficherMouvement(j1);
         
-    }
+    }   
     
 }

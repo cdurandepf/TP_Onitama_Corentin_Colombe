@@ -41,6 +41,10 @@ public class PlateauJeu {
         }
     }
     
+    public void deplacerPion(int type, int ligne, int colone){
+                 
+    }
+    
     public void affecterPionSurCase(int ligne, int colone, Pion p){
         grille[ligne][colone].definirPion(p);
     }
