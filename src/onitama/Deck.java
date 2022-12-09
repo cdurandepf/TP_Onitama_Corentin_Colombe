@@ -13,12 +13,12 @@ import java.util.*;
 public class Deck {
 
     private ArrayList<Carte> deck = new ArrayList();// Création du deck de la partie
-    private Carte deck_j1[] = new Carte[2];
-    private Carte deck_j2[] = new Carte[2];
-    private Carte carte_table;
+    private Carte deck_j1[] = new Carte[2];//Deck du joueur 1
+    private Carte deck_j2[] = new Carte[2];//Deck du joueur 2
+    private Carte carte_table;// Carte sur le côté du plateau
 
     public Deck() {
-        this.creeDeck();
+        this.creeDeck();//Crée le deck
         for (int i = 0; i < 2; i++) {
             deck_j1[i] = deck.get(i);
         }
@@ -37,68 +37,68 @@ public class Deck {
                 verification.add(n); // On ajoute le numero de carte que l'on met dans notre deck
                 switch (n) { // Attribut une carte au deck pour un sertain n
                     case 1:
-                        Carte carte_1 = new Carte(1, "Tiger"); // créée carte
+                        Carte carte_1 = new Carte(1); // créée carte
                         deck.add(carte_1); // ajoute carte au deck
                         break;
                     case 2:
-                        Carte carte_2 = new Carte(2, "Dragon");
+                        Carte carte_2 = new Carte(2);
                         deck.add(carte_2);
                         break;
                     case 3:
-                        Carte carte_3 = new Carte(3, "Frog");
+                        Carte carte_3 = new Carte(3);
                         deck.add(carte_3);
                         break;
                     case 4:
-                        Carte carte_4 = new Carte(4, "Rabbit");
+                        Carte carte_4 = new Carte(4);
                         deck.add(carte_4);
                         break;
                     case 5:
-                        Carte carte_5 = new Carte(5, "Crab");
+                        Carte carte_5 = new Carte(5);
                         deck.add(carte_5);
                         break;
                     case 6:
-                        Carte carte_6 = new Carte(6, "Elephant");
+                        Carte carte_6 = new Carte(6);
                         deck.add(carte_6);
                         break;
                     case 7:
-                        Carte carte_7 = new Carte(7, "Goose");
+                        Carte carte_7 = new Carte(7);
                         deck.add(carte_7);
                         break;
                     case 8:
-                        Carte carte_8 = new Carte(8, "Rooster");
+                        Carte carte_8 = new Carte(8);
                         deck.add(carte_8);
                         break;
                     case 9:
-                        Carte carte_9 = new Carte(9, "Monkey");
+                        Carte carte_9 = new Carte(9);
                         deck.add(carte_9);
                         break;
                     case 10:
-                        Carte carte_10 = new Carte(10, "Mantis");
+                        Carte carte_10 = new Carte(10);
                         deck.add(carte_10);
                         break;
                     case 11:
-                        Carte carte_11 = new Carte(11, "Horse");
+                        Carte carte_11 = new Carte(11);
                         deck.add(carte_11);
                         break;
                     case 12:
-                        Carte carte_12 = new Carte(12, "Ox");
+                        Carte carte_12 = new Carte(12);
                         deck.add(carte_12);
                         break;
                     case 13:
-                        Carte carte_13 = new Carte(13, "Crane");
+                        Carte carte_13 = new Carte(13);
                         deck.add(carte_13);
                         break;
                     case 14:
-                        Carte carte_14 = new Carte(14, "Boar");
+                        Carte carte_14 = new Carte(14);
                         deck.add(carte_14);
                         break;
                     case 15:
-                        Carte carte_15 = new Carte(15, "Eel");
+                        Carte carte_15 = new Carte(15);
                         deck.add(carte_15);
                         break;
 
                     case 16:
-                        Carte carte_16 = new Carte(16, "Cobra");
+                        Carte carte_16 = new Carte(16);
                         deck.add(carte_16);
                         break;
                 }

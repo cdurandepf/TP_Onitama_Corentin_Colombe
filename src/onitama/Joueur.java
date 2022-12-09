@@ -15,6 +15,7 @@ public class Joueur {
     private String couleur;
     private Carte main_courante[] = new Carte[2];
     private ArrayList<Pion> main_pion = new ArrayList();
+    private String nom_j;
 
     public Joueur(String color) {
         couleur = color;

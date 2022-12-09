@@ -25,11 +25,11 @@ public class Case {
         montrerMouvement = b;
     }
 
-    public Pion acessPion() {
+    public Pion acessPion() {//Permet d'accesder au pion sur la case
         return (pionCourant);
     }
 
-    public boolean presencePion() {
+    public boolean presencePion() {//Verifie si un pion est sur la case
         if (pionCourant != null) {
             return (true);
         } else {
@@ -37,15 +37,15 @@ public class Case {
         }
     }
 
-    public void definirPion(Pion p) {
+    public void definirPion(Pion p) {//Pose un pion sur la case
         pionCourant = p;
     }
 
-    public Temple acessTemple() {
+    public Temple acessTemple() {//Renvoie les information sur le temple
         return (avoirTemple);
     }
     
-    public void affecterReper(boolean b){
+    public void affecterReper(boolean b){//Pose l'origine des case, permet de calibrer le mouvement
         pionReper = b;
     }
     

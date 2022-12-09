@@ -20,7 +20,7 @@ public class Onitama {
         Jeu jeu = new Jeu(j1,j2);
         jeu.initialiserJeu();
         jeu.acessPlateau().afficherGrille();
-        j1.acessMainCourante()[0].afficherMouvement(j1);
+        //j1.acessMainCourante()[0].afficherMouvement(j1);
         
     }   
     
