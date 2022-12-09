@@ -13,7 +13,7 @@ import java.util.*;
 public class Joueur {
 
     private String couleur;
-    private Carte main_courante[] = new Carte[2];
+    private ArrayList<Carte> main_courante = new ArrayList();
     private ArrayList<Pion> main_pion = new ArrayList();
     private String nom_j;
 
@@ -29,12 +29,11 @@ public class Joueur {
         couleur = color;
     }
 
-    public void definirMainCourante(Carte[] c) {
-        main_courante[0] = c[0];
-        main_courante[1] = c[1];
+    public void definirMainCourante(ArrayList<Carte> d) {//Prend en entrer un deck et l'affecte comme deck du joueur
+        main_courante = d; 
     }
     
-    public Carte[] acessMainCourante(){
+    public ArrayList<Carte> acessMainCourante(){
         return(main_courante);
     }
 
