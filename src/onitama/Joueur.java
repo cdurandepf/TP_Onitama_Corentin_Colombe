@@ -17,8 +17,9 @@ public class Joueur {
     private ArrayList<Pion> main_pion = new ArrayList();
     private String nom_j;
 
-    public Joueur(String color) {
+    public Joueur(String color, String nom) {
         couleur = color;
+        nom_j = nom;
     }
 
     public String lireCouleur() {
@@ -27,6 +28,10 @@ public class Joueur {
 
     public void affecterCouleur(String color) {
         couleur = color;
+    }
+    
+    public String acessCouleur(){
+        return(couleur);
     }
 
     public void definirMainCourante(ArrayList<Carte> d) {//Prend en entrer un deck et l'affecte comme deck du joueur
@@ -39,6 +44,10 @@ public class Joueur {
 
     public void affecterPion(Pion p) {
         main_pion.add(p);
+    }
+    
+    public String acessNom(){
+        return(nom_j);
     }
 
     public Pion acessMainPion(int indice) {

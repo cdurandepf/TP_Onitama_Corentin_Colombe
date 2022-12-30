@@ -15,13 +15,10 @@ public class Onitama {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Joueur j1 = new Joueur("rouge");
-        Joueur j2 = new Joueur("jaune");
+        Joueur j1 = new Joueur("rouge","Corentin");
+        Joueur j2 = new Joueur("jaune","Colombe");
         Jeu jeu = new Jeu(j1,j2);
-        jeu.initialiserJeu();
-        jeu.acessPlateau().afficherGrille();
-        //j1.acessMainCourante()[0].afficherMouvement(j1);
-        
+        jeu.Partie();        
     }   
     
 }

@@ -72,15 +72,24 @@ public class PlateauJeu {
     public void affecterPionSurCase(int ligne, int colone, Pion p) {
         grille[ligne][colone].definirPion(p);
     }
+    
+    public Case acessCase(int ligne, int colone){
+        return(grille[ligne][colone]);
+    }
 
-    public void Transposer() {
+    public void Transposer() {//Inverse le plateau
         Case temp = new Case(null, null); //Permet de stocké temporerement une case
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 5; j++) {
                 temp = grille[i][j];
-                grille[i][j] = grille[j][i];
-                grille[j][i] = temp;
+                grille[i][j] = grille[4 - i][4 - j];
+                grille[4 - i][4 - j] = temp;
             }
+        }
+        for(int j = 0; j < 2; j++){
+            temp = grille[2][j];
+            grille[2][j] = grille[2][4-j];
+            grille[2][4-j] = temp;
         }
     }
 

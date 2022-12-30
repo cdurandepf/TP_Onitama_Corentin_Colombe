@@ -137,8 +137,8 @@ public class Jeu {
     }
 
     public void premierJoueur() {
-        int n = (int) (Math.random() * 2);
-        joueurCourant = tableau_joueur[n - 1];
+        int n = (int) (Math.random() * 1);
+        joueurCourant = tableau_joueur[n];
     }
 
     public void joueurSuivant() {
@@ -171,84 +171,14 @@ public class Jeu {
     public void creeDeck() { // initialisation du deck
         ArrayList verification = new ArrayList();// Permettra de verifier que nous ne mettons pas deux carte identique dans le deck 
         while (deck.size() != 5) { // Tant que le deck n'est pas remplie on reste dans la boucle
-            int n = (int) (Math.random() * 16); // Choisie un nombre aléatoir entre 1 et 16
+            int n = (int) (Math.random() * 15); // Choisie un nombre aléatoir entre 1 et 16
+            n += 1;
             if (!verification.contains(n)) { // On verifie que la carte n'a pas deja été donné
                 verification.add(n); // On ajoute le numero de carte que l'on met dans notre deck
                 Carte carte = new Carte(n);
                 deck.add(carte);
-                /*
-                switch (n) { // Attribut une carte au deck pour un sertain n
-                    case 1:
-                        Carte carte_1 = new Carte(1); // créée carte
-                        deck.add(carte_1); // ajoute carte au deck
-                        break;
-                    case 2:
-                        Carte carte_2 = new Carte(2);
-                        deck.add(carte_2);
-                        break;
-                    case 3:
-                        Carte carte_3 = new Carte(3);
-                        deck.add(carte_3);
-                        break;
-                    case 4:
-                        Carte carte_4 = new Carte(4);
-                        deck.add(carte_4);
-                        break;
-                    case 5:
-                        Carte carte_5 = new Carte(5);
-                        deck.add(carte_5);
-                        break;
-                    case 6:
-                        Carte carte_6 = new Carte(6);
-                        deck.add(carte_6);
-                        break;
-                    case 7:
-                        Carte carte_7 = new Carte(7);
-                        deck.add(carte_7);
-                        break;
-                    case 8:
-                        Carte carte_8 = new Carte(8);
-                        deck.add(carte_8);
-                        break;
-                    case 9:
-                        Carte carte_9 = new Carte(9);
-                        deck.add(carte_9);
-                        break;
-                    case 10:
-                        Carte carte_10 = new Carte(10);
-                        deck.add(carte_10);
-                        break;
-                    case 11:
-                        Carte carte_11 = new Carte(11);
-                        deck.add(carte_11);
-                        break;
-                    case 12:
-                        Carte carte_12 = new Carte(12);
-                        deck.add(carte_12);
-                        break;
-                    case 13:
-                        Carte carte_13 = new Carte(13);
-                        deck.add(carte_13);
-                        break;
-                    case 14:
-                        Carte carte_14 = new Carte(14);
-                        deck.add(carte_14);
-                        break;
-                    case 15:
-                        Carte carte_15 = new Carte(15);
-                        deck.add(carte_15);
-                        break;
-
-                    case 16:
-                        Carte carte_16 = new Carte(16);
-                        deck.add(carte_16);
-                        break;
-                }
-                 */
             }
-
         }
-
     }
 
     public void creeDeckJoueur() {
@@ -275,41 +205,76 @@ public class Jeu {
 
     public void Mouvement(Joueur j) {
         Scanner sc = new Scanner(System.in);
-        int l_m;
-        int col_m;
         int l_p = 2;
         int col_p = 2;
         Pion p_play = null;
-        while (p_play == null) {
-            System.out.println("Quel pion souhaité vous jouée\nEntrer les coordonnée du pion :\nLigne\nColonne");
-            l_p = sc.nextInt();
-            col_p = sc.nextInt();
-            p_play = plateau.choixPion(l_p, col_p);
-            if (p_play == null) {
-                System.out.println("Il n'y à pas de pion sur cette case, choisissez une autre case");
-            } else {
-                System.out.println("Vous decidez de joue le pion " + p_play);
-            }
-
-        }
-        Carte carte = choixCarte(j);
-        switch (carte.acessType()) {
-            case 1:
-
-                System.out.println("Vos mouvement possible sont :");
-                //deck[1].afficherMouvement(j);
-
-                System.out.println("Sur quelle cause voulez vous jouer; Entrer"
-                        + "\nLigne\nColonne");
-                l_m = sc.nextInt();
-                col_m = sc.nextInt();
-                if (l_m > 5 | l_m < 0 | col_m > 5 | col_m < 0) {
-                    System.out.println("La case séléctionné n'existe pas, choisir une case valide ");
-                }else{
-                    plateau.verifieMouvement(carte, l_m, col_m, l_p, col_p);
+        int ligne = 15;
+        int colone = 15;
+        int[][] VerificationMouvement = new int[2][5];
+        boolean condition = true;
+        int imp = 4; // permet de verifiez qu'il y à des mouvement possible
+        while (imp == 4) {
+            imp = 0;
+            p_play = null;
+            while (p_play == null || p_play.lireCouleur() != j.acessCouleur()) {
+                System.out.println("Quel pion souhaitez vous jouer\nEntrer les coordonnee du pion :\nLigne :");
+                l_p = sc.nextInt() - 1;                
+                System.out.println("Colone :");
+                col_p = sc.nextInt() - 1;
+                p_play = plateau.choixPion(l_p, col_p);
+                if (p_play == null) {
+                    System.out.println("Il n'y à pas de pion sur cette case, choisissez une autre case");
+                } else if (p_play.lireCouleur() != j.acessCouleur()) {
+                    System.out.println("Ce pion ne vous appartient pas");
+                } else {
+                    System.out.println("Vous decidez de joue le pion " + p_play);
                 }
 
+            }
+            Carte carte = choixCarte(j);
+            grilleMouvement = plateau;
+
+            for (int i = 0; i < 4; i++) {
+                System.out.println(l_p + " " + carte.acessVect()[0][i]);
+                System.out.println(col_p + " " + carte.acessVect()[1][i]);
+                ligne = l_p + carte.acessVect()[0][i]; //définit la ligne d'un mouvement possible
+                colone = col_p + carte.acessVect()[1][i]; // de même pour la colone
+                if (!(ligne >= 5 || ligne < 0 || colone >= 5 || colone < 0) && (plateau.acessCase(ligne, colone).presencePion() == false)) {
+                    System.out.println("é");
+                    plateau.affecterMontrerMouvement(ligne, colone, true);
+                    VerificationMouvement[0][i] = ligne;
+                    VerificationMouvement[1][i] = colone;
+                } else {
+                    imp += 1;
+                }
+
+            }
+            if (imp == 4) {
+                System.out.println("Il n'y à aucun mouvement possible pour ce pion et cette carte\nChoisisé un autre pion ou une autre carte");
+            }
         }
+        plateau.afficherGrille();
+        System.out.println("Vous pouvez vous deplacer sur les case noté d'un '.M.', Choisissez-en une");
+        int ligne_m = 15;
+        int colone_m = 15;
+        while (condition) {
+            System.out.println("Ligne :");
+            ligne_m = sc.nextInt() - 1;
+            System.out.println("Colonne :");
+            colone_m = sc.nextInt() - 1;
+            for (int i = 0; i < 4; i++) {
+                if (VerificationMouvement[0][i] == ligne_m & VerificationMouvement[1][i] == colone_m) {
+                    condition = false;
+                }
+            }
+        }
+        plateau.affecterPionSurCase(ligne_m, colone_m, plateau.acessCase(l_p, col_p).acessPion());
+        for (int i = 0; i < 4; i++) {
+            plateau.affecterMontrerMouvement(VerificationMouvement[0][i], VerificationMouvement[1][i], false);
+        }
+        plateau.affecterMontrerMouvement(ligne_m, colone_m, false);
+        plateau.affecterPionSurCase(l_p, col_p, null);
+
     }
 
     public Carte choixCarte(Joueur j) {
@@ -317,16 +282,17 @@ public class Jeu {
         System.out.println("Vous possèder les carte :\n1)" + j.acessMainCourante().get(0) + "\n2)" + j.acessMainCourante().get(1));
         System.out.println("Quels carte voulez vous jouer\nSelection 1 ou 2");
         int choix = sc.nextInt();
-        while (choix != 1 | choix != 2) {
+        while (choix != 1 & choix != 2) {
             System.out.println("L'entrer n'est pas valide, Choisiser entre 1 et 2");
             choix = sc.nextInt();
         }
-        System.out.println("Vous décidez de jouer la carte " + choix);
-        return (j.acessMainCourante().get(choix));
+        System.out.println("Vous décidez de jouer la carte " + j.acessMainCourante().get(choix - 1));
+        return (j.acessMainCourante().get(choix - 1));
     }
 
     public void initialiserJeu() {
         grilleMouvement.affecterPionReper(2, 2, true);
+        creeDeck();
         attribuerCouleurAuxJoueurs();
         premierJoueur();
         creeDeckJoueur();
@@ -335,11 +301,36 @@ public class Jeu {
             plateau.affecterPionSurCase(4, i, tableau_joueur[0].acessMainPion(i));
             plateau.affecterPionSurCase(0, i, tableau_joueur[1].acessMainPion(i));
         }
+        System.out.println("Le premier Joueur est " + joueurCourant.acessNom());
 
     }
 
     public PlateauJeu acessPlateau() {
         return (plateau);
+    }
+
+    public void changementJoueur() {
+        if (joueurCourant == tableau_joueur[0]) {
+            joueurCourant = tableau_joueur[1];
+        } else {
+            joueurCourant = tableau_joueur[0];
+        }
+        plateau.Transposer();
+    }
+
+    public void Partie() {
+        initialiserJeu();
+        while (true) {
+            System.out.println("Au tour de " + joueurCourant);
+            System.out.println("Vous jouez les " + joueurCourant.acessCouleur());
+            System.out.println("Voici t'es carte : ");
+            System.out.println(joueurCourant.acessMainCourante());
+            System.out.println("Voici le plateau :");
+            plateau.afficherGrille();
+            Mouvement(joueurCourant);
+            changementJoueur();
+        }
+
     }
 
 }
