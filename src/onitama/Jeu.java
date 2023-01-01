@@ -283,7 +283,14 @@ public class Jeu {
             plateau.affectermangerPion(VerificationMouvement[0][i], VerificationMouvement[1][i], false);
         }
         plateau.affecterMontrerMouvement(ligne_m, colone_m, false);
-        plateau.affecterPionSurCase(l_p, col_p, null);
+        if(l_p == 4 && col_p == 2){
+            plateau.affecterPionSurCase(l_p, col_p, null);          
+        }else if(l_p == 0 && col_p == 2){
+            plateau.affecterPionSurCase(l_p, col_p, null);              
+        }else{
+            plateau.affecterPionSurCase(l_p, col_p, null);
+        }
+        
 
     }
 
