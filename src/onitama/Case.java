@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 public class Case {
 
     private Pion pionCourant;
-    final private String avoirTemple;
+    private String avoirTemple;
     private boolean montrerMouvement = false;
     private boolean pionReper = false;
     private boolean mangerPion = false;
