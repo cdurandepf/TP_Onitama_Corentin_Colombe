@@ -218,7 +218,7 @@ public class Jeu {
             p_play = null;
             while (p_play == null || p_play.lireCouleur() != j.acessCouleur()) {
                 System.out.println("Quel pion souhaitez vous jouer\nEntrer les coordonnee du pion :\nLigne :");
-                l_p = sc.nextInt() - 1;                
+                l_p = sc.nextInt() - 1;
                 System.out.println("Colone :");
                 col_p = sc.nextInt() - 1;
                 p_play = plateau.choixPion(l_p, col_p);
@@ -240,8 +240,11 @@ public class Jeu {
                 ligne = l_p + carte.acessVect()[0][i]; //définit la ligne d'un mouvement possible
                 colone = col_p + carte.acessVect()[1][i]; // de même pour la colone
                 if (!(ligne >= 5 || ligne < 0 || colone >= 5 || colone < 0) && (plateau.acessCase(ligne, colone).presencePion() == false)) {
-                    System.out.println("é");
                     plateau.affecterMontrerMouvement(ligne, colone, true);
+                    VerificationMouvement[0][i] = ligne;
+                    VerificationMouvement[1][i] = colone;
+                } else if (!(ligne >= 5 || ligne < 0 || colone >= 5 || colone < 0) && plateau.acessCase(ligne, colone).presencePion() && plateau.acessCase(ligne, colone).acessPion().lireCouleur() != j.lireCouleur()) {
+                    plateau.affectermangerPion(ligne, colone, true);
                     VerificationMouvement[0][i] = ligne;
                     VerificationMouvement[1][i] = colone;
                 } else {
@@ -254,10 +257,11 @@ public class Jeu {
             }
         }
         plateau.afficherGrille();
-        System.out.println("Vous pouvez vous deplacer sur les case noté d'un '.M.', Choisissez-en une");
+        System.out.println("Vous pouvez vous deplacer sur les case noté d'un '.M.' ou manger sur les case note d'un '.A.' , Choisissez une case");
         int ligne_m = 15;
         int colone_m = 15;
         while (condition) {
+            int verif = 0;
             System.out.println("Ligne :");
             ligne_m = sc.nextInt() - 1;
             System.out.println("Colonne :");
@@ -265,15 +269,33 @@ public class Jeu {
             for (int i = 0; i < 4; i++) {
                 if (VerificationMouvement[0][i] == ligne_m & VerificationMouvement[1][i] == colone_m) {
                     condition = false;
+                } else {
+                    verif += 1;
                 }
+            }
+            if (verif == 4) {
+                System.out.println("Entrer invalide, veuillez choisir un case note '.M.' ou '.A.'");
             }
         }
         plateau.affecterPionSurCase(ligne_m, colone_m, plateau.acessCase(l_p, col_p).acessPion());
         for (int i = 0; i < 4; i++) {
             plateau.affecterMontrerMouvement(VerificationMouvement[0][i], VerificationMouvement[1][i], false);
+            plateau.affectermangerPion(VerificationMouvement[0][i], VerificationMouvement[1][i], false);
         }
         plateau.affecterMontrerMouvement(ligne_m, colone_m, false);
         plateau.affecterPionSurCase(l_p, col_p, null);
+
+    }
+
+    public boolean Gagner() {
+        
+        System.out.println(plateau.gagnerRoi());
+        System.out.println(plateau.gagnerTemple());
+        if (plateau.gagnerRoi().equals("") && plateau.gagnerTemple().equals(" ")) {        
+            System.out.println("ééé");
+            return (false);
+        }
+        return (true);
 
     }
 
@@ -321,13 +343,17 @@ public class Jeu {
     public void Partie() {
         initialiserJeu();
         while (true) {
-            System.out.println("Au tour de " + joueurCourant);
+            System.out.println("Au tour de " + joueurCourant.acessNom());
             System.out.println("Vous jouez les " + joueurCourant.acessCouleur());
             System.out.println("Voici t'es carte : ");
             System.out.println(joueurCourant.acessMainCourante());
             System.out.println("Voici le plateau :");
             plateau.afficherGrille();
             Mouvement(joueurCourant);
+            Gagner();
+            if (Gagner()) {
+                break;
+            }
             changementJoueur();
         }
 

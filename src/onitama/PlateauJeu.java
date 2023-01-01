@@ -24,7 +24,15 @@ public class PlateauJeu {
         for (int i = 0; i < 16; i++) {
             deck[i] = new Carte(i);
         }
+        grille[0][3].affecterTemple("r");
+        grille[4][3].affecterTemple("j");
+        
+       
 
+    }
+    
+    public void affectermangerPion(int ligne, int colone, boolean b){
+        grille[ligne][colone].affectermangerPion(b);
     }
 
     public Pion choixPion(int l, int col) {//Verifie si le joueur à choisie une case sur la qu'elle il y a un pion, si oui renvoie le pion
@@ -44,6 +52,10 @@ public class PlateauJeu {
             }                
         }
         return (false);
+    }
+    
+    public void affecterTemple(int ligne, int colone, String b){
+        grille[ligne][colone].affecterTemple(b);
     }
 
     public void affecterPionReper(int ligne, int colone, boolean b) {
@@ -75,6 +87,31 @@ public class PlateauJeu {
     
     public Case acessCase(int ligne, int colone){
         return(grille[ligne][colone]);
+    }
+    
+    public String gagnerTemple(){
+        String retour = grille[0][3].gangerTemple() + " " + grille[4][3].gangerTemple();
+        return(retour);        
+    }
+    
+    public String gagnerRoi(){
+        int a = 0;
+        int b = 0;
+        for(int i = 0; i <5; i++){
+            for(int j = 0; j < 5; j++){
+                if(grille[i][j].acessRoi() && grille[i][j].acessPion().lireCouleur().equals("rouge")){
+                    a = 1;
+                } else if(grille[i][j].acessRoi() && grille[i][j].acessPion().lireCouleur().equals("jaune")){
+                    b = 1;
+                }
+            }
+        }
+        if(a == 0){
+            return("Le joueur Jaune à gagner");
+        }else if(b == 0){
+            return("Le joueur Rouge à ganger");
+        }
+        return("");
     }
 
     public void Transposer() {//Inverse le plateau

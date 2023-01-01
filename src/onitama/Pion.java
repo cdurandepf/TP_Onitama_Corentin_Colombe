@@ -31,7 +31,7 @@ public class Pion {
         return (couleur);
     }
 
-    public boolean acessRoi() {
+    public boolean acessRoi() {        
         return (etreRoi);
     }
 
