@@ -235,8 +235,8 @@ public class Jeu {
             grilleMouvement = plateau;
 
             for (int i = 0; i < 4; i++) {
-                System.out.println(l_p + " " + carte.acessVect()[0][i]);
-                System.out.println(col_p + " " + carte.acessVect()[1][i]);
+                //System.out.println(l_p + " " + carte.acessVect()[0][i]);
+                //System.out.println(col_p + " " + carte.acessVect()[1][i]);
                 ligne = l_p + carte.acessVect()[0][i]; //définit la ligne d'un mouvement possible
                 colone = col_p + carte.acessVect()[1][i]; // de même pour la colone
                 if (!(ligne >= 5 || ligne < 0 || colone >= 5 || colone < 0) && (plateau.acessCase(ligne, colone).presencePion() == false)) {
@@ -299,7 +299,6 @@ public class Jeu {
         System.out.println(plateau.gagnerRoi());
         System.out.println(plateau.gagnerTemple());
         if (plateau.gagnerRoi().equals("") && plateau.gagnerTemple().equals(" ")) {        
-            System.out.println("ééé");
             return (false);
         }
         return (true);
